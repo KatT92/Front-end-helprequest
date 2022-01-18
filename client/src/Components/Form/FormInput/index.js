@@ -13,13 +13,15 @@ function FormInput({addItem}) {
 
     return (
         <div>
-        <input type="text" required minLength="2" placeholder="first name" onChange={(event)=> {return fname = event.target.value}}/>
-        <input type="text" required minLength="2" placeholder="last name" onChange={(event)=> {return lname = event.target.value}}/>
-        <input type="number" required minLength="1" placeholder="room number" onChange={(event)=> {return room = event.target.value}}/>
-        <input type="text" required minLength="2" placeholder="What problem are you having" onChange={(event)=> {return problem = event.target.value}}/>
-        <input type="text" required minLength="2" placeholder="What have you tried?" onChange={(event)=> {return tried = event.target.value}}/>
+        <form class="formInput">
+        <input class="inputField" type="text" required minLength="2" placeholder="first name" onChange={(event)=> {return fname = event.target.value}}/>
+        <input class="inputField" type="text" required minLength="2" placeholder="last name" onChange={(event)=> {return lname = event.target.value}}/>
+        <input class="inputField" type="number" required minLength="1" placeholder="room number" onChange={(event)=> {return room = event.target.value}}/>
+        <input class="inputField" type="text" required minLength="2" placeholder="What problem are you having" onChange={(event)=> {return problem = event.target.value}}/>
+        <input class="inputField" type="text" required minLength="2" placeholder="What have you tried?" onChange={(event)=> {return tried = event.target.value}}/>
         {/* <input type="file" onChange={(event)=>{return file = event.target.files[0]}}/> */}
-        <button type="submit" onClick={()=>addItem(fname, lname, room, problem, tried, file)}>Submit</button>
+        <button class="submitButton" type="submit" onClick={()=>addItem(fname, lname, room, problem, tried, file)}>Submit</button>
+        </form>
         </div>
 
     )
