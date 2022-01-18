@@ -22,20 +22,24 @@ import FormInput from '../Form/FormInput/index.js';
 //   this.callAPI();
 // }
 
+// set key as nanoid
+// set datestamp
+
 
 function App() {
 
   const [arrayData, setArrayData] = useState([])
 
   function addItem(fname, lname, room, problem, tried, file) {
-    console.log(file[0].name)
     if (fname.length>1 && 
       lname.length>1 && 
       room.length>0 && 
       problem.length>2 && 
       tried.length>2
       ) {
-    setArrayData([...arrayData, {fname:fname, lname:lname, room:room, problem:problem, tried:tried, file:file[0].name}])
+    setArrayData([...arrayData, {fname:fname, lname:lname, room:room, problem:problem, tried:tried, 
+      // file:file[0].name
+    }])
       }
       else { 
         setArrayData([...arrayData])}
@@ -66,7 +70,7 @@ function App() {
       <FormInput addItem={addItem} />
 
       { arrayData.map((item, index)=> { return ( 
-  <FormDisplay deleteItem={deleteItem} file={item.file} index={index} key={index} fname={item.fname} lname={item.lname} room={item.room} problem={item.problem} tried={item.tried}  ></FormDisplay>
+  <FormDisplay deleteItem={deleteItem} /*file={item.file}*/ index={index} key={nanoid} fname={item.fname} lname={item.lname} room={item.room} problem={item.problem} tried={item.tried}  ></FormDisplay>
   )})}
 
       </header>

@@ -1,8 +1,8 @@
 import React from "react";
 
-function FormDisplay({fname, lname, room, problem, tried, deleteItem, index, file}) {
+function FormDisplay({fname, lname, room, problem, tried, deleteItem, index, /*file*/}) {
 let helper = "";
-console.log("f", file)
+// console.log("f", file)
 
 return (
     <ul>
@@ -12,7 +12,7 @@ return (
     <li>{room}</li>
     <li>{problem}</li>
     <li>{tried}</li>
-    <img src={file} alt="display"></img>
+    {/* <img src={file} alt="display"></img> */}
     <li>
     <input type="text" placeholder="helper" required onChange={(event)=>{return helper=event.target.value}}></input>
     <label>Completed:</label><input type="checkbox" onClick={()=>deleteItem(helper, index)}>

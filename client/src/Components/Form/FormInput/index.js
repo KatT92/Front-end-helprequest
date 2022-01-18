@@ -1,5 +1,5 @@
 
-import React, {useRef} from "react";
+import React from "react";
 
 
 function FormInput({addItem}) {
@@ -18,7 +18,7 @@ function FormInput({addItem}) {
         <input type="number" required minLength="1" placeholder="room number" onChange={(event)=> {return room = event.target.value}}/>
         <input type="text" required minLength="2" placeholder="What problem are you having" onChange={(event)=> {return problem = event.target.value}}/>
         <input type="text" required minLength="2" placeholder="What have you tried?" onChange={(event)=> {return tried = event.target.value}}/>
-        <input type="file" multiple onChange={(event)=>{return file = event.target.files}}/>
+        {/* <input type="file" onChange={(event)=>{return file = event.target.files[0]}}/> */}
         <button type="submit" onClick={()=>addItem(fname, lname, room, problem, tried, file)}>Submit</button>
         </div>
 
