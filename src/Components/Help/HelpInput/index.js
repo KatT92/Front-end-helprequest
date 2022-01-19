@@ -10,7 +10,7 @@ function HelpInput({getRequests}) {
         <div>
         <form className="formInput">
         <input className="inputField" type="text" required minLength="2" placeholder="first name" onChange={(event)=> {return fname = event.target.value}}/>
-   
+
         </form>
         <button className="submitButton" type="submit" onClick={()=>getRequests(fname)}>Submit</button>
         </div>

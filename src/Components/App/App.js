@@ -13,7 +13,8 @@ function App() {
   // const url = new URL(`http://localhost:5000`)
 
   async function getUsers() {
-    let response = await fetch(`http://localhost:5000/helpData`);
+    let response = await fetch(`https://helpqueue-backend.herokuapp.com/helpData`);
+
     let data = await response.json()
     let datapl = data.payload
     return datapl
