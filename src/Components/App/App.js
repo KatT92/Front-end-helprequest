@@ -5,6 +5,7 @@ import FormDisplay from '../Form/FormDisplay/index.js';
 import FormInput from '../Form/FormInput/index.js';
 import HelpDisplay from '../Help/HelpDisplay/index.js'
 import HelpInput from '../Help/HelpInput/index.js'
+import {Routes, Route, Link} from 'react-router-dom'
 
 function App() {
 
@@ -71,18 +72,31 @@ async function getRequests(fname) {
   return (
     <div className="App">
       <header className="App-header">
-      Request help:
+      Welcome to the help desk!
+    <nav>
+      <li><Link to="/">Help page</Link></li>
+      <li><Link to="/analysis">Analysis page</Link></li>
+      </nav>
+      <Routes>
+      <Route path="/" element={
+        <div>
+        Request help:
       <FormInput addItem={addItem} />
-
       { arrayData.map((item, index)=> { return ( 
   <FormDisplay deleteItem={deleteItem} /*file={item.file}*/ index={index} key={nanoid} fname={item.fname} lname={item.lname} room={item.room} problem={item.problem} tried={item.tried}  ></FormDisplay>
-  )})}
-{ }
+  )})} 
+</div> }/>
+
+<Route path="/analysis" element={
+  <div>
+  Analysis:
 <HelpInput getRequests={getRequests} />
 { getName.map((item, index)=> { return ( 
 <HelpDisplay key={index} index={index} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
 )})}
-
+</div>
+}/>
+</Routes>
       </header>
     </div>
   );
