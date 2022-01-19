@@ -5,25 +5,26 @@ import FormDisplay from '../Form/FormDisplay/index.js';
 import FormInput from '../Form/FormInput/index.js';
 
 
+
 function App() {
 
-  //const API_URL = 'localhost:3000/data'
-  
+  // const API_URL = '/data'
+  const url = new URL("https://localhost:5000")
+
+  async function getUsers() {
+  let response = await fetch(`${url}/helpData`);
+  let data = await response.json()
+  console.log(data)
+}
+  getUsers()
+
+
   // process.env.REACT_APP_API_URL
 
   // function Show() {
-    const [users, setUsers] = useState([]);
-    const [error, setError] =  useState("")
+    // const [users, setUsers] = useState([]);
+    // const [error, setError] =  useState("")
   // }
-
-  
-    async function getUsers() {
-      const response = await fetch('localhost:3000/data');
-      const data = await response.json()
-      console.log(data)
-    }
-    console.log(getUsers())
-  
 
   const [arrayData, setArrayData] = useState([])
 
