@@ -9,10 +9,10 @@ import FormInput from '../Form/FormInput/index.js';
 function App() {
 
   // const API_URL = '/data'
-  const url = new URL("https://localhost:5000")
+  const url = new URL("http:localhost:5000")
 
   async function getUsers() {
-  let response = await fetch(`${url}/helpData`);
+  let response = await fetch(`${url}helpData`);
   let data = await response.json()
   console.log(data)
 }
