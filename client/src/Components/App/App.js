@@ -7,7 +7,7 @@ import FormInput from '../Form/FormInput/index.js';
 
 function App() {
 
-  const API_URL = `localhost:3000`
+  const API_URL = 'localhost:3000/data'
   
   // process.env.REACT_APP_API_URL
 
@@ -16,14 +16,14 @@ function App() {
     const [error, setError] =  useState("")
   // }
 
-  useEffect(()=> {
+  
     async function getUsers() {
       const response = await fetch(`${API_URL}/`);
       const data = await response.json()
       console.log(data)
     }
     getUsers()
-  })
+  
 
   const [arrayData, setArrayData] = useState([])
 
