@@ -20,10 +20,9 @@ function FormInput({addItem}) {
         <input class="inputField" type="text" required minLength="2" placeholder="What problem are you having" onChange={(event)=> {return problem = event.target.value}}/>
         <input class="inputField" type="text" required minLength="2" placeholder="What have you tried?" onChange={(event)=> {return tried = event.target.value}}/>
         {/* <input type="file" onChange={(event)=>{return file = event.target.files[0]}}/> */}
-        <button class="submitButton" type="submit" onClick={()=>addItem(fname, lname, room, problem, tried, file)}>Submit</button>
         </form>
+        <button class="submitButton" type="submit" onClick={()=>addItem(fname, lname, room, problem, tried, file)}>Submit</button>
         </div>
-
     )
 }
 
