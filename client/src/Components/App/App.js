@@ -1,32 +1,29 @@
 import { nanoid } from 'nanoid'
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import FormDisplay from '../Form/FormDisplay/index.js';
 import FormInput from '../Form/FormInput/index.js';
 
-// Get front-end to fetch data from our API
-// Get this to render API reponse in React
-
-//constructor(props) {
-//   super(props);
-//   this.state = { apiResponse: "" };
-// }
-
-// async callAPI() {
-//  let response= await fetch("http://localhost:9000/testAPI")
-//       .then(res => res.text())
-//       .then(res => this.setState({ apiResponse: res }));
-// }
-
-// componentWillMount() {
-//   this.callAPI();
-// }
-
-// set key as nanoid
-// set datestamp
-
 
 function App() {
+
+  const API_URL = `localhost:3000`
+  
+  // process.env.REACT_APP_API_URL
+
+  // function Show() {
+    const [users, setUsers] = useState([]);
+    const [error, setError] =  useState("")
+  // }
+
+  useEffect(()=> {
+    async function getUsers() {
+      const response = await fetch(`${API_URL}/`);
+      const data = await response.json()
+      console.log(data)
+    }
+    getUsers()
+  })
 
   const [arrayData, setArrayData] = useState([])
 
