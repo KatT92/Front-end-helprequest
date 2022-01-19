@@ -3,6 +3,8 @@ import './App.css';
 import React, {useState} from 'react';
 import FormDisplay from '../Form/FormDisplay/index.js';
 import FormInput from '../Form/FormInput/index.js';
+import HelpDisplay from '../Help/HelpDisplay/index.js'
+import HelpInput from '../Help/HelpInput/index.js'
 
 function App() {
 
@@ -16,14 +18,17 @@ function App() {
     return datapl
     }
 
+const [getName, setGetName] = useState([])
+
 async function getRequests(fname) {
   let newData = await getUsers()
   let newArray = newData.filter((item)=>{return item.fname === fname})
   console.log(newArray)
+  setGetName([...getName, ...newArray])
   return newArray
 }
 
-getRequests("c")
+
 
   const [arrayData, setArrayData] = useState([])
 
@@ -73,10 +78,10 @@ getRequests("c")
   <FormDisplay deleteItem={deleteItem} /*file={item.file}*/ index={index} key={nanoid} fname={item.fname} lname={item.lname} room={item.room} problem={item.problem} tried={item.tried}  ></FormDisplay>
   )})}
 { }
-{/* <HelpInput getRequests={getRequests} />
-{ arrayData.map((item, index)=> { return ( 
-<HelpDisplay key={index} index={index} getRequests={getRequests} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
-)})} */}
+<HelpInput getRequests={getRequests} />
+{ getName.map((item, index)=> { return ( 
+<HelpDisplay key={index} index={index} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
+)})}
 
       </header>
     </div>
