@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import FormDisplay from '../Form/FormDisplay/index.js';
 import FormInput from '../Form/FormInput/index.js';
 
