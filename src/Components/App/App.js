@@ -51,7 +51,7 @@ async function getRequestsDate(date) {
   let newDate = datearray[2] + "/" + datearray[1] + "/" + datearray[0]
   
   let newData = await getUsers()
-  let newArray = newData.filter((item)=>{return item.date === newDate})
+  let newArray = newData.rows.filter((item)=>{return item.date === newDate})
   console.log(newArray)
   setGetDate([...newArray])
   setGetName([])
