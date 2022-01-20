@@ -10,12 +10,12 @@ import axios from 'axios';
 
 function App() {
 
-  // const API_URL = '/data'
+  
+  // const url = `https://node-postgres-work.herokuapp.com`
+  const url = `http://localhost:5000`
 
   async function getUsers() {
-    // const proxyUrl = `https://cors-anywhere.herokuapp.com/`
-    // const url = `http://localhost:5000`
-    const url = `https://node-postgres-work.herokuapp.com`
+
     let response = await fetch(`${url}/users`, {
       method: 'GET',
       headers: {
@@ -95,6 +95,26 @@ const [fname, setFname] = useState("")
     setTried(tried)
   }
 
+  async function postReq(date, fname, lname, room, problem, tried) {
+
+    let data = {
+      date: date,
+      fname: fname,
+      lname: lname,
+      room: room,
+      problem: problem,
+      tried: tried
+  };
+
+fetch(`${url}/users`, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+      },
+  });
+
+  }
 
 
 
@@ -110,7 +130,9 @@ const [fname, setFname] = useState("")
     setArrayData([...arrayData, {
       fname:fname, lname:lname, room:room, problem:problem, tried:tried, 
     }])
-
+    let date = "20/01/2022"
+  postReq(date, fname, lname, room, problem, tried)
+   handleReset()
       }
       else { 
         setArrayData([...arrayData])
@@ -119,6 +141,9 @@ const [fname, setFname] = useState("")
 
       
   }
+
+
+
 
   function deleteItem(helper, index) {
     if (helper.length>1) {
