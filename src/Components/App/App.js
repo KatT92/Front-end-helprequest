@@ -14,8 +14,9 @@ function App() {
 
   async function getUsers() {
     // const proxyUrl = `https://cors-anywhere.herokuapp.com/`
-    const url = `http://localhost:5000`
-    let response = await fetch(`${url}/helpData`, {
+    // const url = `http://localhost:5000`
+    const url = `https://node-postgres-work.herokuapp.com`
+    let response = await fetch(`${url}/users`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -34,9 +35,26 @@ const [getName, setGetName] = useState([])
 
 async function getRequests(fname) {
   let newData = await getUsers()
-  let newArray = newData.filter((item)=>{return item.fname === fname})
+  console.log(newData.rows)
+  let newArray = newData.rows.filter((item)=>{return item.fname.toLowerCase() === fname.toLowerCase()})
   console.log(newArray)
-  setGetName([...getName, ...newArray])
+  setGetName([...newArray])
+  setGetDate([])
+  return newArray
+}
+
+const [getDate, setGetDate] = useState([])
+
+async function getRequestsDate(date) {
+  console.log(date.toString())
+  let datearray = date.toString().split("-")
+  let newDate = datearray[2] + "/" + datearray[1] + "/" + datearray[0]
+  
+  let newData = await getUsers()
+  let newArray = newData.filter((item)=>{return item.date === newDate})
+  console.log(newArray)
+  setGetDate([...newArray])
+  setGetName([])
   return newArray
 }
 
@@ -93,11 +111,10 @@ const [fname, setFname] = useState("")
       fname:fname, lname:lname, room:room, problem:problem, tried:tried, 
     }])
 
-    handleReset()
-
       }
       else { 
         setArrayData([...arrayData])
+        handleReset()
       }
 
       
@@ -139,9 +156,12 @@ const [fname, setFname] = useState("")
 <Route path="/analysis" element={
   <div>
   Analysis:
-<HelpInput getRequests={getRequests} />
+<HelpInput getRequests={getRequests} getRequestsDate={getRequestsDate} />
 { getName.map((item, index)=> { return ( 
-<HelpDisplay key={index} index={index} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
+<HelpDisplay key={index} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
+)})}
+{ getDate.map((item, index)=> { return ( 
+<HelpDisplay key={index} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
 )})}
 </div>
 }/>
