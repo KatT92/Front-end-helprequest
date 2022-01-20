@@ -2,17 +2,18 @@
 import React from "react";
 
 
-function HelpInput({getRequests}) {
+function HelpInput({getRequests, getRequestsDate}) {
 
     let fname = ""
+    let date = ""
 
     return (
         <div>
-        <form className="formInput">
-        <input className="inputField" type="text" required placeholder="Please enter student name" onChange={(event)=> {return fname = event.target.value}}/>
-
-        </form>
+        <input className="inputField" type="text" placeholder="Please enter a name" onChange={(event)=> {return fname = event.target.value}}/>
         <button className="submitButton" type="submit" onClick={()=>getRequests(fname)}>Submit</button>
+        <br/>
+        <input className="inputField" type="date" placeholder="Please enter a date" onChange={(event)=> {return date = event.target.value}}/>
+        <button className="submitButton" type="submit" onClick={()=>getRequestsDate(date)}>Submit</button>
         </div>
     )
 }
