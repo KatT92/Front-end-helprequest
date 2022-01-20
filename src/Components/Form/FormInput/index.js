@@ -1,44 +1,30 @@
+import React, {useState} from "react";
 
-import React from "react";
+function FormInput({addItem, 
+    fname, changeFname,
+    lname, changeLname,
+    room, changeRname,
+    problem, changePname,
+    tried, changeTname
+}) {
 
+    //const [fname, setFname] = useState("")
+ 
 
-function FormInput({addItem}) {
-
-    let fname = ""
-    let lname = ""
-    let room = ""
-    let problem = ""
-    let tried = ""
-    let file = ""
 
     return (
         <div>
         <form className="formInput">
-        <input className="inputField" type="text" required minLength="2" placeholder="first name" onChange={(event)=> {return fname = event.target.value}}/>
-        <input className="inputField" type="text" required minLength="2" placeholder="last name" onChange={(event)=> {return lname = event.target.value}}/>
-        <input className="inputField" type="number" required minLength="1" placeholder="room number" onChange={(event)=> {return room = event.target.value}}/>
-        <input className="inputField" type="text" required minLength="2" placeholder="What problem are you having" onChange={(event)=> {return problem = event.target.value}}/>
-        <input className="inputField" type="text" required minLength="2" placeholder="What have you tried?" onChange={(event)=> {return tried = event.target.value}}/>
+        <input className="inputField" type="text" required minLength="2" placeholder="first name" value={fname} onChange={(event)=> {changeFname(event.target.value)} }/>
+        <input className="inputField" type="text" required minLength="2" placeholder="last name" value={lname} onChange={(event)=> {changeLname(event.target.value)}}/>
+        <input className="inputField" type="number" required minLength="1" placeholder="room number" value={room} onChange={(event)=> {changeRname(event.target.value)}}/>
+        <input className="inputField" type="text" required minLength="2" placeholder="What problem are you having" value={problem} onChange={(event)=> {changePname(event.target.value)}}/>
+        <input className="inputField" type="text" required minLength="2" placeholder="What have you tried?" value={tried} onChange={(event)=> {changeTname(event.target.value)}}/>
         {/* <input type="file" onChange={(event)=>{return file = event.target.files[0]}}/> */}
         </form>
-        <button className="submitButton" type="submit" onClick={()=>addItem(fname, lname, room, problem, tried, file)}>Submit</button>
+        <button className="submitButton" type="submit" onClick={()=>{addItem(fname, lname, room, problem, tried)}}>Submit</button>
         </div>
     )
 }
 
-
 export default FormInput
-
-
-//     let name = ""
-//     let age = ""
-//     return (
-//         <article>
-//         <input type="text" placeholder="name" onChange={(event)=>{return name = event.target.value}}></input>
-//         <input type="text" placeholder="age" onChange={(event)=>{return age = event.target.value}}></input>
-//         <button type="submit" onClick={()=>addItem(name, age)}>Submit</button>
-//         </article>
-//     )
-// }
-
-// export default InputData
