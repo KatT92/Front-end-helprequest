@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid'
+
 import './App.css';
 import React, {useState} from 'react';
 import FormDisplay from '../Form/FormDisplay/index.js';
@@ -6,7 +6,6 @@ import FormInput from '../Form/FormInput/index.js';
 import HelpDisplay from '../Help/HelpDisplay/index.js';
 import HelpInput from '../Help/HelpInput/index.js';
 import {Routes, Route, Link} from 'react-router-dom';
-import axios from 'axios';
 
 function App() {
 
