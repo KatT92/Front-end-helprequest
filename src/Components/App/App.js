@@ -3,9 +3,10 @@ import './App.css';
 import React, {useState} from 'react';
 import FormDisplay from '../Form/FormDisplay/index.js';
 import FormInput from '../Form/FormInput/index.js';
-import HelpDisplay from '../Help/HelpDisplay/index.js'
-import HelpInput from '../Help/HelpInput/index.js'
-import {Routes, Route, Link} from 'react-router-dom'
+import HelpDisplay from '../Help/HelpDisplay/index.js';
+import HelpInput from '../Help/HelpInput/index.js';
+import {Routes, Route, Link} from 'react-router-dom';
+import axios from 'axios';
 
 function App() {
 
@@ -13,7 +14,6 @@ function App() {
 
   async function getUsers() {
     // const proxyUrl = `https://cors-anywhere.herokuapp.com/`
-    
     const url = `http://localhost:5000`
     let response = await fetch(`${url}/helpData`, {
       method: 'GET',
@@ -28,10 +28,11 @@ function App() {
     return datapl
     }
 
+
+
 const [getName, setGetName] = useState([])
 
 async function getRequests(fname) {
-  
   let newData = await getUsers()
   let newArray = newData.filter((item)=>{return item.fname === fname})
   console.log(newArray)
@@ -39,23 +40,67 @@ async function getRequests(fname) {
   return newArray
 }
 
-
-
   const [arrayData, setArrayData] = useState([])
 
-  function addItem(fname, lname, room, problem, tried, file) {
-    if (fname.length>1 && 
+ 
+const [fname, setFname] = useState("")
+  const [lname, setLname] = useState("")
+  const [room, setRoom] = useState("")
+  const [problem, setProblem] = useState("")
+  const [tried, setTried] = useState("")
+
+  function handleReset() {
+    setFname("")
+    setLname("")
+    setRoom("")
+    setProblem("")
+    setTried("")
+  }
+
+  function changeFname(fname) {
+    setFname(fname)
+  }
+
+  function changeLname(lname) {
+    setLname(lname)
+  }
+
+  function changeRname(room) {
+    setRoom(room)
+  }
+
+  function changePname(problem) {
+    setProblem(problem)
+  }
+
+  function changeTname(tried) {
+    setTried(tried)
+  }
+
+
+
+
+  function addItem(fname, lname, room, problem, tried) {
+    
+    if (
+      fname.length>1 &&
       lname.length>1 && 
       room.length>0 && 
       problem.length>2 && 
       tried.length>2
       ) {
-    setArrayData([...arrayData, {fname:fname, lname:lname, room:room, problem:problem, tried:tried, 
-      // file:file[0].name
+    setArrayData([...arrayData, {
+      fname:fname, lname:lname, room:room, problem:problem, tried:tried, 
     }])
+
+    handleReset()
+
       }
       else { 
-        setArrayData([...arrayData])}
+        setArrayData([...arrayData])
+      }
+
+      
   }
 
   function deleteItem(helper, index) {
@@ -66,18 +111,6 @@ async function getRequests(fname) {
       setArrayData([...arrayData])
     }
   }
-
-
-  // post request front-end
-
-  // function setHelper(helper) {
-  //   if (helper.length>1){
-  //   setArrayData([...arrayData, {helper:helper}])
-  //   }
-  //   else {
-  //   setArrayData([...arrayData])
-  //   }
-  // }
 
   return (
     <div className="App">
@@ -91,9 +124,15 @@ async function getRequests(fname) {
       <Route path="/" element={
         <div>
         Request help:
-      <FormInput addItem={addItem} />
+      <FormInput addItem={addItem} 
+      fname={fname} handleReset={handleReset} changeFname={changeFname} 
+      lname={lname} changeLname={changeLname} 
+      room={room} changeRname={changeRname} 
+      problem={problem} changePname={changePname} 
+      tried={tried} changeTname={changeTname} 
+      />
       { arrayData.map((item, index)=> { return ( 
-  <FormDisplay deleteItem={deleteItem} /*file={item.file}*/ index={index} key={nanoid} fname={item.fname} lname={item.lname} room={item.room} problem={item.problem} tried={item.tried}  ></FormDisplay>
+  <FormDisplay deleteItem={deleteItem} /*file={item.file}*/ index={index} key={index} fname={item.fname} lname={item.lname} room={item.room} problem={item.problem} tried={item.tried}  ></FormDisplay>
   )})} 
 </div> }/>
 
