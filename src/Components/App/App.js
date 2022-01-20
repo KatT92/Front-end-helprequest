@@ -10,10 +10,18 @@ import {Routes, Route, Link} from 'react-router-dom'
 function App() {
 
   // const API_URL = '/data'
-  // const url = new URL(`http://localhost:5000`)
 
   async function getUsers() {
-    let response = await fetch(`https://helpqueue-backend.herokuapp.com/helpData`);
+    // const proxyUrl = `https://cors-anywhere.herokuapp.com/`
+    
+    const url = `http://localhost:5000`
+    let response = await fetch(`${url}/helpData`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': ' application/json',
+              },
+    });
 
     let data = await response.json()
     let datapl = data.payload
@@ -23,6 +31,7 @@ function App() {
 const [getName, setGetName] = useState([])
 
 async function getRequests(fname) {
+  
   let newData = await getUsers()
   let newArray = newData.filter((item)=>{return item.fname === fname})
   console.log(newArray)
