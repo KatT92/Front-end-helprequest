@@ -6,6 +6,7 @@ import FormInput from '../Form/FormInput/index.js';
 import HelpDisplay from '../Help/HelpDisplay/index.js';
 import HelpInput from '../Help/HelpInput/index.js';
 import {Routes, Route, Link} from 'react-router-dom';
+import {nanoid} from 'nanoid'
 
 function App() {
 
@@ -115,6 +116,10 @@ fetch(`${url}/users`, {
 
   }
 
+  function makeKey() {
+    const key = nanoid()
+    return key
+    }
 
 
   function addItem(fname, lname, room, problem, tried) {
@@ -129,7 +134,15 @@ fetch(`${url}/users`, {
     setArrayData([...arrayData, {
       fname:fname, lname:lname, room:room, problem:problem, tried:tried, 
     }])
-    let date = "20/01/2022"
+    let currentTime = new Date()
+    let day = currentTime.getDate().toString()
+    let month = (currentTime.getMonth()+1).toString()
+    if (month.length === 1) {
+      month = "0" + month
+    }
+    let year = currentTime.getFullYear().toString()
+    let date = day + "/" + month + "/" + year
+    console.log(date)
   postReq(date, fname, lname, room, problem, tried)
    handleReset()
       }
@@ -137,10 +150,12 @@ fetch(`${url}/users`, {
         setArrayData([...arrayData])
         handleReset()
       }
-
-      
+    
   }
 
+
+  
+ 
 
 
 
@@ -173,7 +188,7 @@ fetch(`${url}/users`, {
       tried={tried} changeTname={changeTname} 
       />
       { arrayData.map((item, index)=> { return ( 
-  <FormDisplay deleteItem={deleteItem} /*file={item.file}*/ index={index} key={index} fname={item.fname} lname={item.lname} room={item.room} problem={item.problem} tried={item.tried}  ></FormDisplay>
+  <FormDisplay deleteItem={deleteItem} /*file={item.file}*/ index={index} key={makeKey()} fname={item.fname} lname={item.lname} room={item.room} problem={item.problem} tried={item.tried}  ></FormDisplay>
   )})} 
 </div> }/>
 
@@ -182,10 +197,10 @@ fetch(`${url}/users`, {
   Analysis:
 <HelpInput getRequests={getRequests} getRequestsDate={getRequestsDate} />
 { getName.map((item, index)=> { return ( 
-<HelpDisplay key={index} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
+<HelpDisplay key={makeKey()} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
 )})}
-{ getDate.map((item, index)=> { return ( 
-<HelpDisplay key={index} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
+{ getDate.map((item, index)=> {  return ( 
+<HelpDisplay key={makeKey()} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
 )})}
 </div>
 }/>
