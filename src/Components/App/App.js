@@ -142,7 +142,7 @@ fetch(`${url}/users`, {
     let date = day + "/" + month + "/" + year
     
     setArrayData([...arrayData, {
-      date: date, fname:fname, lname:lname, room:room, problem:problem, tried:tried
+      date: date, fname:fname, lname:lname, room:room, problem:problem, tried:tried,
     }])
     
   postReq(date, fname, lname, room, problem, tried)
@@ -184,8 +184,14 @@ fetch(`${url}/users`, {
       problem={problem} changePname={changePname} 
       tried={tried} changeTname={changeTname} 
       />
+      <br/>
+      List of requests:
+      <hr/>
       { arrayData.map((item, index)=> { return ( 
+        <div>
   <FormDisplay deleteItem={deleteItem} date={item.date} index={index} key={makeKey()} fname={item.fname} lname={item.lname} room={item.room} problem={item.problem} tried={item.tried}  ></FormDisplay>
+  <hr/>
+  </div>
   )})} 
 </div> }/>
 
@@ -193,11 +199,20 @@ fetch(`${url}/users`, {
   <div>
   Analysis:
 <HelpInput getRequests={getRequests} getRequestsDate={getRequestsDate} />
+<br/>
+History of requests:
+<hr/>
 { getName.map((item, index)=> { return ( 
+  <div>
 <HelpDisplay key={makeKey()} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tried={item.tried}/>
+<hr/>
+</div>
 )})}
 { getDate.map((item, index)=> {  return ( 
+  <div>
 <HelpDisplay key={makeKey()} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tried={item.tried}/>
+<hr/>
+</div>
 )})}
 </div>
 }/>

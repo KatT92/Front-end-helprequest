@@ -5,7 +5,7 @@ let helper = "";
 // console.log("f", file)
 
 return (
-    <ul>
+    <ul className="requests">
     <li>Priority: {index+1}</li>
     <li>{date}</li>
     <li>{fname}</li>
@@ -18,7 +18,9 @@ return (
     <input type="text" placeholder="helper" required onChange={(event)=>{return helper=event.target.value}}></input>
     <label>Completed:</label><input type="checkbox" onClick={()=>deleteItem(helper, index)}>
     </input></li>
+    <hr/>
     </ul>
+    
 )
 }
 
