@@ -194,7 +194,7 @@ fetch(`${url}/users`, {
   Analysis:
 <HelpInput getRequests={getRequests} getRequestsDate={getRequestsDate} />
 { getName.map((item, index)=> { return ( 
-<HelpDisplay key={makeKey()} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
+<HelpDisplay key={makeKey()} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tried={item.tried}/>
 )})}
 { getDate.map((item, index)=> {  return ( 
 <HelpDisplay key={makeKey()} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tried={item.tried}/>
