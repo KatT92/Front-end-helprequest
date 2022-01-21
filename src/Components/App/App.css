@@ -70,3 +70,7 @@ a:hover {
   background-color: #767976;
   color: white;
 }
+
+.analysis li{
+  margin-right: 10%;
+}
