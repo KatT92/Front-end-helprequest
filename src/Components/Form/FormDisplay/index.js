@@ -1,12 +1,13 @@
 import React from "react";
 
-function FormDisplay({fname, lname, room, problem, tried, deleteItem, index, /*file*/}) {
+function FormDisplay({date,fname, lname, room, problem, tried, deleteItem, index, /*file*/}) {
 let helper = "";
 // console.log("f", file)
 
 return (
     <ul>
     <li>Priority: {index+1}</li>
+    <li>{date}</li>
     <li>{fname}</li>
     <li>{lname}</li>
     <li>{room}</li>

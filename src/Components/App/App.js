@@ -11,8 +11,8 @@ import {nanoid} from 'nanoid'
 function App() {
 
   
-  // const url = `https://node-postgres-work.herokuapp.com`
-  const url = `http://localhost:5000`
+  const url = `https://node-postgres-work.herokuapp.com`
+  // const url = `http://localhost:5000`
 
   async function getUsers() {
 
@@ -66,6 +66,7 @@ const [fname, setFname] = useState("")
   const [room, setRoom] = useState("")
   const [problem, setProblem] = useState("")
   const [tried, setTried] = useState("")
+  // const [date, setDate] = useState("")
 
   function handleReset() {
     setFname("")
@@ -131,10 +132,7 @@ fetch(`${url}/users`, {
       problem.length>2 && 
       tried.length>2
       ) {
-    setArrayData([...arrayData, {
-      fname:fname, lname:lname, room:room, problem:problem, tried:tried, 
-    }])
-    let currentTime = new Date()
+        let currentTime = new Date()
     let day = currentTime.getDate().toString()
     let month = (currentTime.getMonth()+1).toString()
     if (month.length === 1) {
@@ -142,7 +140,11 @@ fetch(`${url}/users`, {
     }
     let year = currentTime.getFullYear().toString()
     let date = day + "/" + month + "/" + year
-    console.log(date)
+    
+    setArrayData([...arrayData, {
+      date: date, fname:fname, lname:lname, room:room, problem:problem, tried:tried, 
+    }])
+    
   postReq(date, fname, lname, room, problem, tried)
    handleReset()
       }
@@ -152,11 +154,6 @@ fetch(`${url}/users`, {
       }
     
   }
-
-
-  
- 
-
 
 
   function deleteItem(helper, index) {
@@ -188,7 +185,7 @@ fetch(`${url}/users`, {
       tried={tried} changeTname={changeTname} 
       />
       { arrayData.map((item, index)=> { return ( 
-  <FormDisplay deleteItem={deleteItem} /*file={item.file}*/ index={index} key={makeKey()} fname={item.fname} lname={item.lname} room={item.room} problem={item.problem} tried={item.tried}  ></FormDisplay>
+  <FormDisplay deleteItem={deleteItem} date={item.date} index={index} key={makeKey()} fname={item.fname} lname={item.lname} room={item.room} problem={item.problem} tried={item.tried}  ></FormDisplay>
   )})} 
 </div> }/>
 
