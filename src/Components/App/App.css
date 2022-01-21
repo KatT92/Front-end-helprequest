@@ -41,5 +41,6 @@ ul {
 }
 
 li {
+  width: 200px;
   text-align: center;
 }

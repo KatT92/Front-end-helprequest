@@ -142,7 +142,7 @@ fetch(`${url}/users`, {
     let date = day + "/" + month + "/" + year
     
     setArrayData([...arrayData, {
-      date: date, fname:fname, lname:lname, room:room, problem:problem, tried:tried, 
+      date: date, fname:fname, lname:lname, room:room, problem:problem, tried:tried
     }])
     
   postReq(date, fname, lname, room, problem, tried)
@@ -197,7 +197,7 @@ fetch(`${url}/users`, {
 <HelpDisplay key={makeKey()} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
 )})}
 { getDate.map((item, index)=> {  return ( 
-<HelpDisplay key={makeKey()} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tred={item.tried}/>
+<HelpDisplay key={makeKey()} index={index} date={item.date} fname={item.fname} lname={item.lname} problem={item.problem} tried={item.tried}/>
 )})}
 </div>
 }/>
