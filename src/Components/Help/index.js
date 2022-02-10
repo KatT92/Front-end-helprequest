@@ -13,11 +13,16 @@ export default function Analysis() {
 
   const url = herokuUrl(); //url of back-end
 
-  /* TODO - back-end - send get request, but only return data back where name matches */
-  /* TODO - make getRequests and getRequestsDate into a single function.
-  - On submit, see which box has been filled in */
+  /* TODO - 
+  1. back-end - send get request, but only return data back where name matches
+  2. make getRequests and getRequestsDate into a single function?
+    - On submit, see which box has been filled in 
+    - Dropdown menu?
+  3. Add a reset state function to getRequestDate, and getRequestName.
+  */
+
   // fname - first name - given as an input from user
-  async function getRequests(fname) {
+  async function getRequestsName(fname) {
     let allData = await getUsers(url); // sends GET request to back-end, returns all Data from database as an array
     let fnameArray = allData.rows.filter((item) => {
       return item.fname.toLowerCase() === fname.toLowerCase();
@@ -48,7 +53,10 @@ export default function Analysis() {
   return (
     <div>
       Analysis:
-      <HelpInput getRequests={getRequests} getRequestsDate={getRequestsDate} />
+      <HelpInput
+        getRequestsName={getRequestsName}
+        getRequestsDate={getRequestsDate}
+      />
       <br />
       History of requests:
       <hr />
